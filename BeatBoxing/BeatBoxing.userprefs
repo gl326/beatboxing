@@ -1,20 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\BeatBoxer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/TF2shader.shader">
     <Files>
-      <File FileName="Assets\PlayerParticles.cs" Line="52" Column="127" />
-      <File FileName="Assets\Visualizer.cs" Line="1" Column="1" />
-      <File FileName="Assets\PopUp.cs" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\cipherprime\soundboard\utils\Waveform.cs" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\ScreenShake.cs" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\cipherprime\MPlayerDubstep.cs" Line="1" Column="1" />
-      <File FileName="Assets\Metronome.cs" Line="1" Column="1" />
-      <File FileName="Assets\Player.cs" Line="174" Column="49" />
-      <File FileName="Assets\PlayerHP.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BeatBoxer.cs" Line="71" Column="66" />
-      <File FileName="Assets\BGFX.cs" Line="1" Column="1" />
-      <File FileName="Assets\AngleSpeed.cs" Line="1" Column="1" />
-      <File FileName="Assets\PlayerParticles.cs" Line="52" Column="127" />
+      <File FileName="Assets/SH_gameBoyShader.shader" Line="119" Column="2" />
+      <File FileName="Assets/TF2shader.shader" Line="62" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
