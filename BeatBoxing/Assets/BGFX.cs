@@ -25,6 +25,9 @@ public class BGFX : MonoBehaviour {
 	public Transform line;
 	public Transform particles;
 	public Transform lights;
+	public BGGeom geom;
+
+	private float ratio;
 
 	// Use this for initialization
 	void Start () {
@@ -56,9 +59,17 @@ public class BGFX : MonoBehaviour {
 
 		//Debug.Log(stotal+","+stotal/(float)samples);
 
-		float ratio = (Mathf.Max (soundMin,Mathf.Min (soundMax,(stotal/(float)samples)))-soundMin)/(soundMax-soundMin);
+		ratio = (Mathf.Max (soundMin,Mathf.Min (soundMax,(stotal/(float)samples)))-soundMin)/(soundMax-soundMin);
 		particle.startColor = Color.Lerp (minColor,maxColor,Mathf.Pow (ratio,3f));
 		particle.startSpeed = Mathf.Lerp (minParticleSpeed,maxParticleSpeed,Mathf.Pow (ratio,3f))*(1f+(9f*Mathf.Pow(1f - (_boxer.Beat()%1f),8f)));
 		particle.startSize = Mathf.Lerp (minParticleSize,maxParticleSize,ratio);
+	}
+
+	public void OnBeat(){
+		geom.OnBeat();
+	}
+
+	public float Volume(){
+		return ratio;
 	}
 }

@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\AngleSpeed.cs" />
      <Compile Include="Assets\BGFX.cs" />
+     <Compile Include="Assets\BGGeom.cs" />
      <Compile Include="Assets\EnemyHP.cs" />
      <Compile Include="Assets\LineWaves\LineWave.cs" />
      <Compile Include="Assets\LineWaves\guiMenu.cs" />

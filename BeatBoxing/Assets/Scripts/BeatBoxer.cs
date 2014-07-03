@@ -38,6 +38,7 @@ public class BeatBoxer : MonoBehaviour {
 
 	private PlayerParticles _playerParts;
 	private PlayerParticles _enemyParts;
+	private BGFX _bg;
 
 	public GameObject popup;
 	public GameObject boxerModel;
@@ -72,10 +73,13 @@ public class BeatBoxer : MonoBehaviour {
 		_enemyParts = _enemy.GetComponentInChildren<PlayerParticles>();
 		_enemy.GetComponentInChildren<MeshRenderer>().material.color = colorSet.HPColor; //set HP color
 
-		BGFX _bg = GameObject.FindWithTag("BG").GetComponent<BGFX>();
+		_bg = GameObject.FindWithTag("BG").GetComponent<BGFX>();
 		_bg.line.GetComponent<LineRenderer>().material.SetColor("_TintColor",colorSet.lineColor);
 		_bg.minColor = colorSet.particleColor1;
 		_bg.maxColor = colorSet.particleColor2;
+		_bg.lights.GetChild(0).light.color = colorSet.lightColorA;
+		_bg.lights.GetChild(1).light.color = colorSet.lightColorB;
+		_bg.lights.GetChild(2).light.color = colorSet.lightColorC;
 
 		_mainCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
 
@@ -183,6 +187,7 @@ public class BeatBoxer : MonoBehaviour {
 	void OnBeat(){
 		GameObject.FindWithTag("MainCamera").GetComponent<ScreenShake>().Shake(.05f,.1f);
 		beatTimer = beatDelay;
+		_bg.OnBeat();
 
 		currentFrame += 1;
 		if (currentAttack==null || currentFrame>=currentAttack.frames.Count){
