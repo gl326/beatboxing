@@ -1,0 +1,34 @@
+# Unity generated #
+# =============== #
+BeatBoxing/Temp/
+BeatBoxing/Obj/
+BeatBoxing/UnityGenerated/
+BeatBoxing/Library/metadata/
+BeatBoxing/Library/Occlusion/
+BeatBoxing/Library/ScriptAssemblies/
+ 
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+BeatBoxing/ExportedObj/
+BeatBoxing/*.svd
+BeatBoxing/*.userprefs
+BeatBoxing/*.csproj
+BeatBoxing/*.pidb
+BeatBoxing/*.suo
+BeatBoxing/*.sln
+BeatBoxing/*.user
+BeatBoxing/*.unityproj
+BeatBoxing/*.booproj
+ 
+# ============ #
+# OS generated #
+# ============ #
+BeatBoxing/.DS_Store
+BeatBoxing/.DS_Store?
+BeatBoxing/._*
+BeatBoxing/.Spotlight-V100
+BeatBoxing/.Trashes
+BeatBoxing/Icon?
+BeatBoxing/ehthumbs.db
+BeatBoxing/Thumbs.db
