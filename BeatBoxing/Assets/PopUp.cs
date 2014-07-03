@@ -23,9 +23,9 @@ public class PopUp : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (_boxer.beats>=beat_target+1f){this.gameObject.SetActive(false);}
+		if (_boxer.Beat()>=beat_target+1f){this.gameObject.SetActive(false);}
 		else{
-		float beats = _boxer.beats;
+		float beats = _boxer.Beat();
 		float dir = 1f;
 		if (player){dir = -1f;}
 		float sc = 1f;

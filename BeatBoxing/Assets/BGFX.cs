@@ -22,6 +22,10 @@ public class BGFX : MonoBehaviour {
 	public float soundMin = -18f;
 	public float soundMax = -4f;
 
+	public Transform line;
+	public Transform particles;
+	public Transform lights;
+
 	// Use this for initialization
 	void Start () {
 		_boxer = GameObject.FindWithTag("Beatboxer").GetComponent<BeatBoxer>();
@@ -32,12 +36,12 @@ public class BGFX : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		beatLine.walkManual = -(0f*_boxer.beats);//-Mathf.Pow(2f*((_boxer.beats+.5f)%1f),2f);
-		beatLine.amp += ((maxAmp * (1f-Mathf.Pow(_boxer.beats%1f,1f/2f))*Mathf.Sign (Mathf.Sin (_boxer.beats*Mathf.PI)))-beatLine.amp)*0.4f;
-		beatLineTrans.eulerAngles = new Vector3(0f,50f*Mathf.Sin (_boxer.beats*Mathf.PI),0f);
-			//Mathf.Max (1f,Mathf.Min (maxAmp,Mathf.Tan(-(Mathf.PI*_boxer.beats)-(Mathf.PI/2f))));
-			//Mathf.Pow (Mathf.Abs (Mathf.Sin (Mathf.PI*_boxer.beats)), 2f)*maxAmp;))
-		//beatLine.freq = minFreq + ((maxFreq-minFreq)*Mathf.Pow (Mathf.Abs (Mathf.Sin (Mathf.PI*_boxer.beats)), 1f/2f));
+		beatLine.walkManual = -(0f*_boxer.Beat());//-Mathf.Pow(2f*((_boxer.Beat()+.5f)%1f),2f);
+		beatLine.amp += ((maxAmp * (1f-Mathf.Pow(_boxer.Beat()%1f,1f/2f))*Mathf.Sign (Mathf.Sin (_boxer.Beat()*Mathf.PI)))-beatLine.amp)*0.4f;
+		beatLineTrans.eulerAngles = new Vector3(0f,50f*Mathf.Sin (_boxer.Beat()*Mathf.PI),0f);
+			//Mathf.Max (1f,Mathf.Min (maxAmp,Mathf.Tan(-(Mathf.PI*_boxer.Beat())-(Mathf.PI/2f))));
+			//Mathf.Pow (Mathf.Abs (Mathf.Sin (Mathf.PI*_boxer.Beat())), 2f)*maxAmp;))
+		//beatLine.freq = minFreq + ((maxFreq-minFreq)*Mathf.Pow (Mathf.Abs (Mathf.Sin (Mathf.PI*_boxer.Beat())), 1f/2f));
 
 		int samples = 512;
 		float[] spectrum = new float[samples];
@@ -54,7 +58,7 @@ public class BGFX : MonoBehaviour {
 
 		float ratio = (Mathf.Max (soundMin,Mathf.Min (soundMax,(stotal/(float)samples)))-soundMin)/(soundMax-soundMin);
 		particle.startColor = Color.Lerp (minColor,maxColor,Mathf.Pow (ratio,3f));
-		particle.startSpeed = Mathf.Lerp (minParticleSpeed,maxParticleSpeed,Mathf.Pow (ratio,3f))*(1f+(9f*Mathf.Pow(1f - (_boxer.beats%1f),8f)));
+		particle.startSpeed = Mathf.Lerp (minParticleSpeed,maxParticleSpeed,Mathf.Pow (ratio,3f))*(1f+(9f*Mathf.Pow(1f - (_boxer.Beat()%1f),8f)));
 		particle.startSize = Mathf.Lerp (minParticleSize,maxParticleSize,ratio);
 	}
 }

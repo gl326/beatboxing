@@ -23,10 +23,10 @@ public class Metronome : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		float cos = Mathf.Sin (Mathf.PI*_boxer.beats);
+		float cos = Mathf.Sin (Mathf.PI*_boxer.Beat());
 		ball.position = new Vector3(barLength*Mathf.Pow (Mathf.Abs (cos), 2f/3f)*Mathf.Sign(cos), ball.position.y, ball.position.z);
 
-		cos = Mathf.Max (0,Mathf.Tan ((Mathf.PI*_boxer.beats)+(Mathf.PI/2))/10f);
+		cos = Mathf.Max (0,Mathf.Tan ((Mathf.PI*_boxer.Beat())+(Mathf.PI/2))/10f);
 
 		//ring.localScale = new Vector3(10f*Mathf.Abs(cos),.1f,10f*Mathf.Abs(cos));
 		//ringMat.color = new Color(ringMat.color.r,ringMat.color.g,ringMat.color.b,(1 - Mathf.Pow (Mathf.Abs(cos),3)));
@@ -41,7 +41,7 @@ public class Metronome : MonoBehaviour {
 		debug.GetComponent<ParticleSystem>().Play();
 		debug.GetComponent<ParticleSystem>().time = 0f;
 		debug.GetComponent<ParticleSystem>().playbackSpeed = _boxer.BPM ()/60f;
-		debug.GetComponent<ParticleSystem>().startSize = 1f+(6f*Mathf.Pow (Mathf.Cos (Mathf.PI*_boxer.beats),4f));
+		debug.GetComponent<ParticleSystem>().startSize = 1f+(6f*Mathf.Pow (Mathf.Cos (Mathf.PI*_boxer.Beat()),4f));
 		}else{
 		debug.GetComponent<ParticleSystem>().Stop();
 			debug.GetComponent<MeshRenderer>().material.color = new Color(debugColor.r*0.5f,debugColor.g*0.5f,debugColor.b*0.5f);

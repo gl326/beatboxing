@@ -46,13 +46,16 @@ public class BeatBoxer : MonoBehaviour {
 	private Transform _enemy;
 	private Transform _enemyModel;
 	private List<GameObject> popUps;
+	private Camera _mainCamera;
 	//private int QueuedFrames = 0;
 
 	public float hurtShake = 0.5f;
 	private int hurtBeat = -99;
-	
 
-	public float beats; //gives an accurate measure of the totalsong progress in beats
+	
+	private float beats; //gives an accurate measure of the totalsong progress in beats
+
+	public ColorSet colorSet;
 
 	// Use this for initialization
 	void Start () {
@@ -67,6 +70,14 @@ public class BeatBoxer : MonoBehaviour {
 
 		_enemy = GameObject.FindWithTag("Enemy").transform;
 		_enemyParts = _enemy.GetComponentInChildren<PlayerParticles>();
+		_enemy.GetComponentInChildren<MeshRenderer>().material.color = colorSet.HPColor; //set HP color
+
+		BGFX _bg = GameObject.FindWithTag("BG").GetComponent<BGFX>();
+		_bg.line.GetComponent<LineRenderer>().material.SetColor("_TintColor",colorSet.lineColor);
+		_bg.minColor = colorSet.particleColor1;
+		_bg.maxColor = colorSet.particleColor2;
+
+		_mainCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
 
 		_enemyModel = (Instantiate(boxerModel) as GameObject).transform;
 		_enemyModel.parent = _enemy;
@@ -299,13 +310,17 @@ public class BeatBoxer : MonoBehaviour {
 
 		beats += (Time.deltaTime/60*BPM ());
 
+		////enemy hurt shake
 		if (Mathf.FloorToInt(beats)==hurtBeat){
 			float shake = hurtShake*(1f - Mathf.Pow (beats%1f,2f));
 			_enemyModel.localPosition = 
 				new Vector3(-shake+Random.Range(0f,2f*shake),-shake+Random.Range(0f,2f*shake),-shake+Random.Range(0f,2f*shake));
 		}else{_enemyModel.localPosition = Vector3.zero;}
 
+		///////background color
+		_mainCamera.backgroundColor = Color.Lerp (colorSet.bgColor1,colorSet.bgColor2,Mathf.Pow (Mathf.Abs(.5f-(beats%1f))/.5f,4f));
 
+		///////update beat
 		if (Mathf.FloorToInt(timePassed*BPM()/60f)!=Mathf.FloorToInt(timeP*BPM()/60f)){ //new beat
 			//currentFrame += 1;
 			OnBeat ();
@@ -334,6 +349,10 @@ public class BeatBoxer : MonoBehaviour {
 				DelayedBeat();
 			}
 		}
+	}
+
+	public float Beat(){
+		return beats;
 	}
 }
 
@@ -425,6 +444,38 @@ public class AttackFrame //one beat of an attack
 		blockingLong = false;
 		attackingShort = false;
 		attackingLong = false;
+	}
+	
+}
+
+[System.Serializable]
+public class ColorSet //a series of preset states over several beats
+{ 
+	public Color bgColor1;
+	public Color bgColor2;
+	public Color particleColor1;
+	public Color particleColor2;
+	public Color lineColor;
+	public Color lightColorA;
+	public Color lightColorB;
+	public Color lightColorC;
+	public Color HPColor;
+	
+	public ColorSet(
+			Color bgColor1,Color bgColor2,Color particleColor1,Color particleColor2,
+			Color lineColor,
+			Color lightColorA,Color lightColorB,Color lightColorC,
+			Color HPColor)
+	{
+		this.bgColor1 = bgColor1;
+		this.bgColor2 = bgColor2;
+		this.particleColor1 = particleColor1;
+		this.particleColor2 = particleColor2;
+		this.lineColor = lineColor;
+		this.lightColorA = lightColorA;
+		this.lightColorB = lightColorB;
+		this.lightColorC = lightColorC;
+		this.HPColor = HPColor;
 	}
 	
 }

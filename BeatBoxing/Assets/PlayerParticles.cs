@@ -34,15 +34,15 @@ public class PlayerParticles : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Mathf.FloorToInt(_boxer.beats)!=swipeBeat){
+		if (Mathf.FloorToInt(_boxer.Beat())!=swipeBeat){
 			swipeFX.particleSystem.enableEmission = false;
 		}else{
-			//Debug.Log("swiping @ "+(Mathf.Pow ((_boxer.beats%1f),1f/2f)*100f)+"%, emission is "+swipeFX.particleSystem.enableEmission);
+			//Debug.Log("swiping @ "+(Mathf.Pow ((_boxer.Beat()%1f),1f/2f)*100f)+"%, emission is "+swipeFX.particleSystem.enableEmission);
 			Vector3 swipeDir = Vector3.Normalize(swipeEnd-swipeStart);
-			swipeFX.localPosition = Vector3.Lerp (swipeStart,swipeEnd,Mathf.Pow ((_boxer.beats%1f)/.75f,1f/3f))  
+			swipeFX.localPosition = Vector3.Lerp (swipeStart,swipeEnd,Mathf.Pow ((_boxer.Beat()%1f)/.75f,1f/3f))  
 				/*+Vector3.Lerp (swipeFX.localPosition,
 				              swipeFX.localPosition + (Quaternion.AngleAxis(90, swipeDir) * swipeDir*(swipeDist/3f)),
-				              Mathf.Pow (1f - (Mathf.Abs ((_boxer.beats%1f)-.5f)/.5f),1f/2f))*/
+				              Mathf.Pow (1f - (Mathf.Abs ((_boxer.Beat()%1f)-.5f)/.5f),1f/2f))*/
 					;
 			swipeFX.particleSystem.enableEmission = true;
 		}
@@ -60,7 +60,7 @@ public class PlayerParticles : MonoBehaviour {
 		Vector3 victor = new Vector3(-.5f+Random.Range(0f,1f),-.5f+Random.Range(0f,1f),-.5f+Random.Range(0f,1f));
 		swipeEnd = swipeOrigin + (direction*swipeDist) + victor;
 
-		swipeBeat = Mathf.FloorToInt(_boxer.beats);
+		swipeBeat = Mathf.FloorToInt(_boxer.Beat());
 		swipeFX.particleSystem.Clear();
 		swipeFX.particleSystem.Play();
 		swipeFX.particleSystem.enableEmission = true;

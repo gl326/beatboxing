@@ -3,7 +3,7 @@ using System.Collections;
 
 [RequireComponent(typeof(MeshFilter))]
 public class EnemyHP : MonoBehaviour {
-	private int quality = 24;
+	private int quality = 16;
 	private float hpRadius = 1.75f;
 	//private float staminaRadius = 2.2f;
 

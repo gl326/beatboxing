@@ -161,7 +161,7 @@ public class Player : MonoBehaviour {
 		blockingShort = false;
 		blockingLong = false;
 		LoseStamina();
-		hurtBeat = Mathf.FloorToInt(_boxer.beats);
+		hurtBeat = Mathf.FloorToInt(_boxer.Beat());
 	}
 
 	public bool didInput(){
@@ -170,8 +170,8 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		float beat = _boxer.beats%1f;
-		if (Mathf.FloorToInt(_boxer.beats)==hurtBeat){
+		float beat = _boxer.Beat()%1f;
+		if (Mathf.FloorToInt(_boxer.Beat())==hurtBeat){
 			float shake = hurtShake*(1f - Mathf.Pow (beat,2f));
 			apollo.localPosition = origin + 
 				new Vector3(-shake+Random.Range(0f,2f*shake),-shake+Random.Range(0f,2f*shake),-shake+Random.Range(0f,2f*shake));
