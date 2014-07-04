@@ -306,24 +306,34 @@ public class BeatBoxer : MonoBehaviour {
 
 			return null;
 		}
-	
 
-	// Update is called once per frame
-	void FixedUpdate () {
-		float timeP = timePassed;
-		timePassed += Time.deltaTime;
-
-		beats += (Time.deltaTime/60*BPM ());
-
+	//low fidelity for effects and junk
+	void Update(){
 		////enemy hurt shake
 		if (Mathf.FloorToInt(beats)==hurtBeat){
 			float shake = hurtShake*(1f - Mathf.Pow (beats%1f,2f));
 			_enemyModel.localPosition = 
 				new Vector3(-shake+Random.Range(0f,2f*shake),-shake+Random.Range(0f,2f*shake),-shake+Random.Range(0f,2f*shake));
 		}else{_enemyModel.localPosition = Vector3.zero;}
-
+		
 		///////background color
 		_mainCamera.backgroundColor = Color.Lerp (colorSet.bgColor1,colorSet.bgColor2,Mathf.Pow (Mathf.Abs(.5f-(beats%1f))/.5f,4f));
+
+		//////light color changes
+		 /*
+		int theBeat = Mathf.FloorToInt(beats);
+		_bg.lights.GetChild((theBeat)%3).light.color = Color.Lerp(colorSet.lightColorB,colorSet.lightColorA,Mathf.Sqrt(beats%1f));
+		_bg.lights.GetChild((theBeat+1)%3).light.color = Color.Lerp(colorSet.lightColorC,colorSet.lightColorB,Mathf.Sqrt(beats%1f));
+		_bg.lights.GetChild((theBeat+2)%3).light.color = Color.Lerp(colorSet.lightColorA,colorSet.lightColorC,Mathf.Sqrt(beats%1f));
+		*/
+	}
+
+	// high fidelity for inputs
+	void FixedUpdate () {
+		float timeP = timePassed;
+		timePassed += Time.deltaTime;
+
+		beats += (Time.deltaTime/60*BPM ());
 
 		///////update beat
 		if (Mathf.FloorToInt(timePassed*BPM()/60f)!=Mathf.FloorToInt(timeP*BPM()/60f)){ //new beat

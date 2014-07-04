@@ -66,7 +66,7 @@ public class BGFX : MonoBehaviour {
 	}
 
 	public void OnBeat(){
-		geom.OnBeat();
+		if (geom.enabled){geom.OnBeat();}
 	}
 
 	public float Volume(){
