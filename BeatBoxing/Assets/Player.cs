@@ -116,7 +116,7 @@ public class Player : MonoBehaviour {
 			blockingLong=false;
 			bigAttack = true;
 					LoseStamina();
-					anim = "punch1";
+					anim = "uppercut";
 			break;
 		case inputs.down: 
 			attackingShort=false;
