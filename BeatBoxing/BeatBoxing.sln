@@ -9,6 +9,8 @@ Project("{530DD419-EBDD-248A-398E-93FD150FE009}") = "BeatBoxing", "Assembly-CSha
 EndProject
 Project("{530DD419-EBDD-248A-398E-93FD150FE009}") = "BeatBoxing", "Assembly-UnityScript-firstpass.unityproj", "{A16F23B7-EC02-4A90-E51D-60ACEA804171}"
 EndProject
+Project("{530DD419-EBDD-248A-398E-93FD150FE009}") = "BeatBoxing", "Assembly-UnityScript-Editor.unityproj", "{29971379-8204-93F1-C70D-9C798915F792}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,11 +33,15 @@ Global
 		{A16F23B7-EC02-4A90-E51D-60ACEA804171}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A16F23B7-EC02-4A90-E51D-60ACEA804171}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A16F23B7-EC02-4A90-E51D-60ACEA804171}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29971379-8204-93F1-C70D-9C798915F792}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29971379-8204-93F1-C70D-9C798915F792}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29971379-8204-93F1-C70D-9C798915F792}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29971379-8204-93F1-C70D-9C798915F792}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																			GlobalSection(MonoDevelopProperties) = preSolution
+																																																					GlobalSection(MonoDevelopProperties) = preSolution
 																																																						GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
