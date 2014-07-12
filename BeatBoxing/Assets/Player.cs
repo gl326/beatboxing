@@ -116,7 +116,7 @@ public class Player : MonoBehaviour {
 			blockingLong=false;
 			bigAttack = true;
 					LoseStamina();
-					anim = "punch1";
+					anim = "uppercut";
 			break;
 		case inputs.down: 
 			attackingShort=false;
@@ -135,6 +135,7 @@ public class Player : MonoBehaviour {
 		for (int i=0;i<animationList.Length;i+=1){
 			if (animationList[i].name == anim){
 				newState = i;
+				Debug.Log ("state is "+newState);
 					break;
 			}
 		}
