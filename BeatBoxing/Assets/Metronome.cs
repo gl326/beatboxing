@@ -24,7 +24,7 @@ public class Metronome : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		float cos = Mathf.Sin (Mathf.PI*_boxer.Beat());
-		ball.position = new Vector3(barLength*Mathf.Pow (Mathf.Abs (cos), 2f/3f)*Mathf.Sign(cos), ball.position.y, ball.position.z);
+		ball.localPosition = new Vector3(barLength*Mathf.Pow (Mathf.Abs (cos), 2f/3f)*Mathf.Sign(cos), ball.localPosition.y, ball.localPosition.z);
 
 		cos = Mathf.Max (0,Mathf.Tan ((Mathf.PI*_boxer.Beat())+(Mathf.PI/2))/10f);
 
